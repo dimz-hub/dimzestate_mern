@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type:String,
-        default: "https://share.google/images/uCQtYpO4poHfsGrak"
+        default: "https://i.pravatar.cc/150?img=3"
 }, 
 }, {timestamps : true})
 
