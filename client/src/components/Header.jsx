@@ -38,7 +38,7 @@ return (
                 {
                  currentUser ? 
                    <Link to='/profile' >
-                <img src ='https://i.pravatar.cc/150?img=3' alt='profile' className='rounded-full h-7 w-7 object-cover' />
+                <img src ={currentUser.avatar} alt='profile' className='rounded-full h-7 w-7 object-cover' />
                 </Link>
                  :
                     <Link to='/sign-in' >
