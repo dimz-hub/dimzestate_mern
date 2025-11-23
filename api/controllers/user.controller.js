@@ -1,3 +1,4 @@
+import Listing from "../models/listing.modal.js"
 import User from "../models/user.modal.js"
 import { errorHandler } from "../utils/error.js"
 import bcryptjs from "bcryptjs"
@@ -42,10 +43,16 @@ export const deleteUser = async (req, res, next)  => {
     }
 }
 
-export const signOut = async (req, res, next) => {
-  try{
-    res.clearCookie('access_token').status(200).json({message: 'User has been logged out'})
-  }catch(err){
-    next(err)
+ 
+export const getUserListings = async (req, res, next) => {
+  if (req.user.id === req.params.id) {  
+    try{
+      const listings = await Listing.find({userRef: req.params.id})
+      res.status(200).json(listings)
+    }catch(err){
+      next(err)
+    }
+  } else{
+    return next(errorHandler(401, 'You can only view your own listings'))
   }
 }
