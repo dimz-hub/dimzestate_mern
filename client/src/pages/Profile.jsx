@@ -85,6 +85,7 @@ const handleSignOut = async () => {
 const handleShowListings = async ( ) => {
   try{
  setShowListingsError(false)
+ console.log(currentUser._id)
  const res = await fetch(`/api/user/listings/${currentUser._id}`)
  const data = await res.json()
  if(data.success === false) {
@@ -97,7 +98,24 @@ const handleShowListings = async ( ) => {
   }
 }
 
-console.log(userListings)
+const handleListingDelete = async (listingId) => {
+  try{
+     const res = await fetch(`api/listing/delete/${listingId}`, {
+      method: "DELETE",
+     })
+     const data = await res.json()
+     console.log( 'this is data', data)
+     if (data.success === false) {
+      console.log(data.message)
+      return
+     }
+
+     setUserListings((prev) => prev.filter((listing) => listing._id !== listingId))
+
+  } catch(err){
+   console.log(err.message)
+  }
+}
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -136,7 +154,7 @@ console.log(userListings)
                 <p>{listing.name}</p>
               </Link>
               <div className='flex flex-col items-center'>
-                <button className='text-red-700 uppercase'>Delete</button>
+                <button onClick = {() => handleListingDelete(listing._id)} className='text-red-700 uppercase'>Delete</button>
                 <Link to={`/update-listing/${listing._id}`}>
                 <button className='text-green-700 uppercase'>Edit</button>
                 </Link>
