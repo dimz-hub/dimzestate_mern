@@ -134,17 +134,17 @@ export default function UpdateListing() {
             <div className='flex flex-wrap gap-6'>
                 <div className='flex items-center gap-2'>
                 <input type='number' id= 'bedrooms' min='1' max='10' required 
-                className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} checked={formData.bedrooms}/>
+                className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} checked={formData.bedrooms} value={formData.bedrooms}/>
                 <p>Beds</p>
                 </div>
                 <div className='flex items-center gap-2'>
                 <input type='number' id= 'bathrooms' min='1' max='10' required 
-                className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} checked={formData.bathrooms}/>
+                className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} checked={formData.bathrooms} value={formData.bathrooms}/>
                 <p>Baths</p>
                 </div>
                 <div className='flex items-center gap-2'>
                 <input type='number' id= 'regularPrice' min='50' max='10000000' required 
-                className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} checked={formData.regularPrice}/>
+                className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} checked={formData.regularPrice} value={formData.regularPrice}/>
                 <div>
                 <p>Regular Price</p>
                 <span className='text-xs'>($ / month)</span>
