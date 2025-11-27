@@ -14,6 +14,7 @@ import {
   FaShare,
 } from 'react-icons/fa';
 import { useSelector } from 'react-redux'
+import Contact from '../components/Contact'
 
 export default function Listing() {
     SwiperCore.use([Navigation]);
@@ -21,7 +22,7 @@ export default function Listing() {
     const [loading,setLoading] = useState(false)
     const [error, setError] = useState(false)
     const params = useParams()
-    const currentUser = useSelector((state) => state.user)
+    const {currentUser} = useSelector((state) => state.user)
    const images = [
   "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688", // modern house exterior
   "https://images.unsplash.com/photo-1570129477492-45c003edd2be", // luxury living room
@@ -35,6 +36,7 @@ export default function Listing() {
   "https://images.unsplash.com/photo-1527030280862-64139fba04ca"  // modern apartments
 ];
   const [randomImage, setRandomImage] = useState(null);
+  const [contact,setContact] = useState(false)
 
 
     useEffect(() => {
@@ -56,12 +58,14 @@ export default function Listing() {
             setLoading(false)
         }
       }
-
+      
       fetchListing()
-    const index = Math.floor(Math.random() * images.length);
+      const index = Math.floor(Math.random() * images.length);
     setRandomImage(images[index]);
-    },[params.listingId])
-
+  },[params.listingId])
+  
+  console.log('sdgfh',params.listingId)
+    console.log(listing)
 
 
   return (
@@ -133,7 +137,7 @@ export default function Listing() {
                           {listing.furnished ? 'Furnished' : 'Unfurnished'}
                         </li>
                       </ul>
-                      {/* {currentUser && listing.userRef !== currentUser._id && !contact && (
+                      {currentUser && listing.userRef !== currentUser._id && !contact && (
                         <button
                           onClick={() => setContact(true)}
                           className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
@@ -141,7 +145,7 @@ export default function Listing() {
                           Contact landlord
                         </button>
                       )}
-                      {contact && <Contact listing={listing} />} */}
+                      {contact && <Contact listing={listing} />}
                     </div>
                     </div>
          )}
